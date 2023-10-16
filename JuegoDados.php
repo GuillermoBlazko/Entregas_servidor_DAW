@@ -34,6 +34,15 @@
 <body>
     <p>Jugador 1: <?=$resultado1[0]?>. Suma: <?=$resultado1[1]?></p>
     <p>Jugador 2: <?=$resultado2[0]?>. Suma: <?=$resultado2[1]?></p>
-    <p>El ganador es:<?=$resultado1[1]>$resultado2[1]? "ha ganado el jugador 1":"ha ganado el jugador 2"?></p>
+    <p>El ganador es:<?php
+    if ($resultado1[1]=$resultado2[1]){
+    "ha sido un empate";
+    }else if ($resultado1[1]>$resultado2[1]){
+        "ha ganado el jugador 1"; 
+    }else{
+        "ha ganado el jugador 2";
+    } ?></p>
+   // $resultado1[1]>$resultado2[1]? "ha ganado el jugador 1":"ha ganado el jugador 2"
+   
 </body>
 </html>
