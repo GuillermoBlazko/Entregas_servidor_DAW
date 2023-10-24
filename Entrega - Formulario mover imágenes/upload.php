@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $uploadDir = "../imgusr/";
+    $directorio = "../imgusr/";
     $maxarchivo = 200000; 
     $maxtotal = 300000; 
 
@@ -11,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $tamañoArchivo = $_FILES['imagenes']['size'][$key];
         $tipoArchivo = $_FILES['imagenes']['type'][$key];
 
-        $uploadPath = $uploadDir . $nombreArchivo;
+        $dirsubida = $directorio. $nombreArchivo;
 
-        $allowedTypes = ['image/jpeg', 'image/png'];
-        if (!in_array($tipoArchivo, $allowedTypes)) {
+        $extensiones = ['image/jpeg', 'image/png'];
+        if (!in_array($tipoArchivo, $extensiones)) {
             $errores[] = "El archivo $nombreArchivo no es una imagen JPEG o PNG.";
         }
 
@@ -22,12 +22,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errores[] = "El archivo $nombreArchivo supera el tamaño máximo permitido.";
         }
 
-        if (file_exists($uploadPath)) {
+        if (file_exists($dirsubida)) {
             $errores[] = "El archivo $nombreArchivo ya existe en el directorio de imágenes.";
         }
 
         if (empty($errores)) {
-            move_uploaded_file($tmpName, $uploadPath);
+            move_uploaded_file($tmpName, $dirsubida);
         }
     }
 
