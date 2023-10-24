@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $directorio = "../imgusr/";
+    $directorio = "imgusr/";
     $maxarchivo = 200000; 
     $maxtotal = 300000; 
 
