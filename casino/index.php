@@ -18,6 +18,10 @@ if (isset($_SESSION["visita"])) {
     $_SESSION["visita"] = 1;
 }
 
+//ESTABLECE DINERO INICIAL
+if (isset($_POST["dineroInicial"])) {
+    ($_POST["dineroInicial"] > 0) ? $_SESSION["cantidad"] = $_POST["dineroInicial"] : $msg .= "Se requiere que el número sea mayor que 0";
+}
 
 //MUESTRA INICIO
 if (!isset($_SESSION["cantidad"])) {
@@ -26,16 +30,13 @@ if (!isset($_SESSION["cantidad"])) {
 }
 
 
-//ESTABLECE DINERO INICIAL
-if (isset($_POST["dineroInicial"])) {
-    ($_POST["dineroInicial"] > 0) ? $_SESSION["cantidad"] = $_POST["dineroInicial"] : $msg .= "Se requiere que el número sea mayor que 0";
-}
+
 
 //SWITCH EN BASE AL ACCION. 
 if (isset($_REQUEST["accion"])) {
     switch ($_REQUEST["accion"]) {
         case "Apostar":
-            if (isset($_POST["dineroApuesta"]) && $_POST["dineroApuesta"] > 0 && $_POST["dineroApuesta"] < $_SESSION["cantidad"]) {
+            if (isset($_POST["dineroApuesta"]) && $_POST["dineroApuesta"] > 0 && $_POST["dineroApuesta"] <= $_SESSION["cantidad"]) {
                 $cantidad = $_POST["dineroApuesta"];
                 $_SESSION["numeroRandom"] = random_int(1, 2);
 
@@ -43,15 +44,15 @@ if (isset($_REQUEST["accion"])) {
                 // (isset($_POST["apuesta"])=="Impar" && $_SERVER["numeroRandom"]%2!=0)?$_SERVER["cantidad"]+=$cantidad*2:$_SERVER["cantidad"]-=$cantidad;
 
                 if (isset($_POST["apuesta"])) {
-                    if ($_POST["apuesta"] == "Par" && $_SESSION["numeroRandom"] % 2 == 0) {
+                    if ($_POST["apuesta"] == "Par" && $_SESSION["numeroRandom"] == 2) {
                         $_SESSION["cantidad"] += $cantidad * 2;
                         $resultado .= "PAR <br> GANASTE!";
-                    } elseif (isset($_POST["apuesta"]) == "Impar" && $_SESSION["numeroRandom"] % 2 != 0) {
+                    } elseif (isset($_POST["apuesta"]) == "Impar" && $_SESSION["numeroRandom"] == 1) {
                         $_SESSION["cantidad"] -= $cantidad;
-                        $resultado .= "PAR <br> PERDISTE!";
+                        $resultado .= "IMPAR <br> GANASTE!";
                     } else {
                         $_SESSION["cantidad"] -= $cantidad;
-                        $resultado .= ($_SESSION["numeroRandom"] % 2 == 0) ? "PAR <br> PERDISTE!" : "IMPAR <br> PERDISTE!";
+                        $resultado .= ($_SESSION["numeroRandom"] == 2) ? "PAR <br> PERDISTE!" : "IMPAR <br> PERDISTE!";
                     }
                 } else {
                     $msg .= "Debes seleccionar par o Impar";
