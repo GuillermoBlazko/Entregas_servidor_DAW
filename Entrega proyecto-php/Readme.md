@@ -15,7 +15,7 @@ Este documento proporciona una descripción de las últimas actualizaciones y ca
    - Las imágenes de usuario ahora se muestran correctamente en el sistema.
 
 5. **Problema Persistente con Guardado de Imágenes:**
-   - A pesar de varios intentos y la colaboración de varios compañeros, sigue habiendo dificultades para guardar imágenes. Este problema sigue siendo una prioridad para su resolución.
+   - A pesar de varios intentos y la colaboración de varios compañeros, sigue habiendo dificultades para guardar imágenes.
 
 6. **Imagen "Global" para IPs no válidas:**
    - Se ha añadido la funcionalidad para mostrar una imagen global en caso de que la dirección IP no sea válida.
